@@ -1,0 +1,18 @@
+torch~=2.1.2
+torchvision~=0.16.2
+torchaudio~=2.1.2
+
+transformers==4.36.2
+sentence_transformers==2.2.2
+
+faiss-cpu # `conda install faiss-gpu -c conda-forge` if you want to accelerate with gpus
+
+streamlit
+
+docx2txt
+
+llama-index
+
+llama-cpp-python
+
+langchain
