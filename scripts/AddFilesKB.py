@@ -1,24 +1,9 @@
 
 from KB_function.DocumentLoader import DocumentLoader
-from KB_function.ContentIndex import ContextIndex
-
+from KB_function.ContentIndexSimple import ContextIndex
 import os
 
-
-
-
-
-def find_str(input, all_files):
-    for f in all_files:
-        find_Result = f.find(input)
-        if find_Result != -1:
-            return f
-
-    return "not found"
-
-
-
-
+#import a set of documents to your constructed knowledge database
 
 def AddFile(loader, docx_file, short_name): ## add a file to the existing knowledge base, according to kb_configs.py
     indexstore = ContextIndex()
@@ -30,14 +15,12 @@ def AddFile(loader, docx_file, short_name): ## add a file to the existing knowle
 
 ## create model
 loader = DocumentLoader()
-docx_path = "D:/LLM/KnowledgeBase/ICRP80-153MD/ICRP80-153MD"
-file_names = os.listdir(docx_path)
-for i in range(153-80+1):
-    pub = i + 80
-    if pub != 101:
-        ICRP_pub = str(pub)
-        docx_file = find_str(ICRP_pub, file_names)
-        short_name = "ICRP " + str(pub)
-        if docx_file != "not found":
-            print("Converting " + docx_file + ", with name: " + short_name)
-            AddFile(loader, docx_path + "/" + docx_file, short_name)
+doc_dir = # direction of your documents
+file_names = os.listdir(doc_dir)
+for i, file in enumerate(file_names):
+    if i>0:
+        filename = doc_dir + "/" + file
+        short_name = file[:-5] #set it yourself
+
+        print("Converting " + file + ", with name: " + short_name)
+        AddFile(loader, filename, short_name)
