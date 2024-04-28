@@ -3,9 +3,9 @@ import streamlit as st
 from KB_function.RetriverQuery import RetriverQuery
 
 @st.cache_resource
-def ConstructQueryContext():
+def ConstructQueryContext(top_k=5):
     r = RetriverQuery()
-    r.ConstructContext()
+    r.ConstructContext(top_k)
     return r
 
 
@@ -16,27 +16,10 @@ def get_response(r, query):
 
 def ui_demo(context):
 
-    topk = st.sidebar.slider('How many chunks to retrieve, top k', 1, 20, 5)
-    use_rerank = st.sidebar.checkbox("Use reranking")
-    topn = st.sidebar.slider('How many chunks to retrieve after reranking, <= top k', 1, 20, 3)
-
-    if "config_use_rerank" not in st.session_state.keys() or topk != st.session_state.config_use_rerank:
-        context.set_use_rerank(use_rerank)
-        context.ConstructContext()
-        st.session_state.config_use_rerank = use_rerank
-
+    topk = st.sidebar.slider('How many commits to retrieve', 1, 10, 3)
     if "config_topk" not in st.session_state.keys() or topk != st.session_state.config_topk:
-        context.set_topk(topk)
-        context.ConstructContext()
+        context.ConstructContext(topk)
         st.session_state.config_topk = topk
-
-    if "config_topn" not in st.session_state.keys() or topk != st.session_state.config_topn:
-        if topn > st.session_state.config_topk:
-            topn = st.session_state.config_topk
-        if st.session_state.config_use_rerank:
-            context.set_topn(topn)
-            context.ConstructContext()
-        st.session_state.config_topn = topn
 
     if "messages" not in st.session_state.keys():  # Initialize the chat messages history
         st.session_state.messages = [
