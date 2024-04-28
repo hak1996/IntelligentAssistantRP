@@ -1,8 +1,6 @@
 
-path_kb = "E:/hak/AI/KB_RP/KB_recursive"
+path_kb = #path to your dataset of knowledge
 
-chunk_size_base = 1024
-chunk_overlap_base = 0
-
+#setup for your knowledge dataset
 chunk_size_small = 256
 chunk_overlap_small = 32
