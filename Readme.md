@@ -2,6 +2,8 @@
 
 We provide a simplified demo of intelligent assistant in radiation protection. You can clone the repository and construct your intelligent assistant in radiation protection.
 
+This branch is the version with recursive retrieval. 
+
 Before you begin, you need to download LLM and embedding and reranking model:
 
 + Mistral-7B: https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2
